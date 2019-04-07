@@ -13,8 +13,9 @@ def home():
 
 @app.route('/termsService')
 def termsService():
+    topNRankNum = 5
 
-    resText,resRank, mainContract = textFreqCal()
+    resText,resRank, mainContract = textFreqCal(topNRankNum)
 
 
     return render_template('termsOfService.html', **locals())

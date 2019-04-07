@@ -41,7 +41,7 @@ def removeStem(sentence):
 
 
 
-def textFreqCal():
+def textFreqCal(topNRankNum):
     contractTxtOrg = open(contractPath, encoding="utf8", errors='ignore').read()
     contractTxt = contractTxtOrg
     print(contractTxtOrg)
@@ -95,7 +95,7 @@ def textFreqCal():
 
 
 
-    rankAr = np.asarray(resPara).argsort()[::-1][:5]
+    rankAr = np.asarray(resPara).argsort()[::-1][:topNRankNum]
 
     heapLi = []
 
