@@ -1,5 +1,5 @@
 # import the Flask class from the flask module
-from flask import Flask, render_template
+from flask import Flask, render_template, request
 from support.textFreq import textFreqCal
 
 # create the application object
@@ -11,10 +11,20 @@ def home():
     return render_template('index.html')  # render a template
 
 
-@app.route('/termsService')
+@app.route('/termsService',methods=['POST','GET'])
 def termsService():
-    topNRankNum = 5
 
+    topNRankNum = 5
+    if request.method == 'POST':
+        result = request.form
+        if result['top'].isdigit():
+            topNRankNum = int(result['top'])
+    else:
+        topNRankNum  = request.args.get('top',None)
+
+    if topNRankNum is None:
+    	topNRankNum = 5
+    print('Num: ',topNRankNum)
     resText,resRank, mainContract = textFreqCal(topNRankNum)
 
 

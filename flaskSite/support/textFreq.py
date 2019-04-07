@@ -41,10 +41,9 @@ def removeStem(sentence):
 
 
 
-def textFreqCal(topNRankNum):
+def textFreqCal(topNRankNum,splitNum = 300):
     contractTxtOrg = open(contractPath, encoding="utf8", errors='ignore').read()
     contractTxt = contractTxtOrg
-    print(contractTxtOrg)
     contractVec = removeStopWords([removeStem(contractTxt)])
 
     vec = CountVectorizer()
@@ -70,7 +69,7 @@ def textFreqCal(topNRankNum):
     resPara = []
     resScore = []
 
-    splitNum = 300
+    
     #for paragraph in contractTxt.split('\n'):
     for paragraph in [contractTxt[i:i+splitNum] for i in range(0, len(contractTxt), splitNum)]:
         paragraph = paragraph.translate(string.punctuation)
