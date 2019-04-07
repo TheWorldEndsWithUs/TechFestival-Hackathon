@@ -20,7 +20,7 @@ import heapq
 rootPath = './company0/'
 complaintSubPath = 'complaintMain/'
 
-contractPath = rootPath + '/termService/' + '0.txt'
+contractPath = rootPath + '/termService/' + 'policy.txt'
 
 
 def removeStopWords(wordList):
@@ -79,7 +79,7 @@ a = complantCnt.fit_transform(compList)
 resPara = []
 resScore = []
 
-splitNum = 1000
+splitNum = 300
 #for paragraph in contractTxt.split('\n'):
 for paragraph in [contractTxt[i:i+splitNum] for i in range(0, len(contractTxt), splitNum)]:
     paragraph = paragraph.translate(string.punctuation)
