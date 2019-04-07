@@ -114,9 +114,7 @@ def textFreqCal():
         resRank.append(score)
 
 
-    #contractTxtOrg = contractTxtOrg.replace('\n','<br>')
-
-    return resText,resRank, contractTxtOrg
+    return resText,resRank, contractTxtOrg.split('\n')
 
 
 

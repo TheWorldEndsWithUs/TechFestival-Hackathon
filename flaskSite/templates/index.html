@@ -54,7 +54,9 @@
       <br>
       Here is the original terms of service:
       <p style='border: 1px solid black; padding:10px;'>
-        {{mainContract}}
+        {% for text in mainContract %}
+          {{ text }}<br>
+        {% endfor %}
       </p>
       <br><br><br>
       <b><u>Here are some things from the contract that you should be aware about:</u></b>
@@ -65,7 +67,7 @@
 
       </p>
       <br><br>
-      <center><button type="button" class="btn btn-primary">Accept terms of service</button></center>
+      <center><button type="button" class="btn btn-danger">Reject terms of service</button> <button type="button" class="btn btn-success">Accept terms of service</button></center>
     </main>
 
     <footer class="footer">
