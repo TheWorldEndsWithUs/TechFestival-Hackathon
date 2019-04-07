@@ -11,8 +11,8 @@ import string
 import heapq 
 
 
-rootPath = './company0/'
-complaintSubPath = 'complaints/'
+
+complaintSubPath = 'complaintMain/'
 
 
 
@@ -41,9 +41,9 @@ def removeStem(sentence):
 
 
 
-def textFreqCal(topNRankNum,splitNum):
-    contractPath = rootPath + 'termService/' + 'policy.txt'
-
+def textFreqCal(topNRankNum,splitNum,rootPath):
+    contractPath = rootPath + 'termService/' + '0.txt'
+    print(rootPath + complaintSubPath)
     contractTxtOrg = open(contractPath, encoding="utf8", errors='ignore').read()
     contractTxt = contractTxtOrg
     contractVec = removeStopWords([removeStem(contractTxt)])
@@ -57,7 +57,7 @@ def textFreqCal(topNRankNum,splitNum):
     # Used for removing stem from words
     for cFilePath in os.listdir(rootPath + complaintSubPath):
         cFilePath = rootPath + complaintSubPath + cFilePath
-        cFileTxt = open(cFilePath,'r').read()
+        cFileTxt = open(cFilePath, encoding="utf8", errors='ignore').read()
 
         cFileTxt = removeStem(cFileTxt)
         

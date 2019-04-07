@@ -16,25 +16,34 @@ def termsService():
 
     topNRankNum = 5
     splitNum = 300
+    contractDir = './company0/'
+
     if request.method == 'POST':
         result = request.form
         if result['top'].isdigit():
             topNRankNum = int(result['top'])
+        if result['contractType'] == 'gym':
+            splitNum = 300
+            contractDir = './company0/'
+        elif result['contractType'] == 'dating':
+            splitNum = 300
+            contractDir = './dating/'
+        else:
+            # We are doing hotel
+            splitNum = 300
+            contractDir = './hotel/'
     else:
         topNRankNum  = request.args.get('top',None)
 
     if topNRankNum is None:
-    	topNRankNum = 5
-    '''
-    if result['contractType'] == 'gym':
-    	splitNum = 300
-    else:
-    	y = 2+2
-    '''
+        topNRankNum = 5
+
+    
 
 
 
-    resText,resRank, mainContract = textFreqCal(topNRankNum,splitNum)
+
+    resText,resRank, mainContract = textFreqCal(topNRankNum,splitNum,contractDir)
 
 
     return render_template('termsOfService.html', **locals())
