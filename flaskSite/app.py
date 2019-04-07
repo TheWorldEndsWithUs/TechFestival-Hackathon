@@ -26,11 +26,11 @@ def termsService():
             splitNum = 300
             contractDir = './company0/'
         elif result['contractType'] == 'dating':
-            splitNum = 300
+            splitNum = 400
             contractDir = './dating/'
         else:
             # We are doing hotel
-            splitNum = 300
+            splitNum = 400
             contractDir = './hotel/'
     else:
         topNRankNum  = request.args.get('top',None)
