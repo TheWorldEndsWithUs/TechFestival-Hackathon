@@ -53,6 +53,10 @@
       <h1 class="mt-5">Terms of Service</h1>
       <br>
        <form class="form" action="/termsService" method="POST">
+          <select name="contractType">
+            <option value="gym">Gym</option>
+            <option value="dating">Dating</option>
+          </select>
           <input type="text" name="top" style='width:130px;' placeholder="# of Suggestions"/>
           <input type="submit" value="Filter"/>
        </form>

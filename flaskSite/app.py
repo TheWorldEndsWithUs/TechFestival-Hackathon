@@ -15,6 +15,7 @@ def home():
 def termsService():
 
     topNRankNum = 5
+    splitNum = 300
     if request.method == 'POST':
         result = request.form
         if result['top'].isdigit():
@@ -24,8 +25,16 @@ def termsService():
 
     if topNRankNum is None:
     	topNRankNum = 5
-    print('Num: ',topNRankNum)
-    resText,resRank, mainContract = textFreqCal(topNRankNum)
+    '''
+    if result['contractType'] == 'gym':
+    	splitNum = 300
+    else:
+    	y = 2+2
+    '''
+
+
+
+    resText,resRank, mainContract = textFreqCal(topNRankNum,splitNum)
 
 
     return render_template('termsOfService.html', **locals())

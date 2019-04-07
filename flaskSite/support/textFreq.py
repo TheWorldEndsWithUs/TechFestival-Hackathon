@@ -14,7 +14,7 @@ import heapq
 rootPath = './company0/'
 complaintSubPath = 'complaints/'
 
-contractPath = rootPath + 'termService/' + 'policy.txt'
+
 
 
 def removeStopWords(wordList):
@@ -41,7 +41,9 @@ def removeStem(sentence):
 
 
 
-def textFreqCal(topNRankNum,splitNum = 300):
+def textFreqCal(topNRankNum,splitNum):
+    contractPath = rootPath + 'termService/' + 'policy.txt'
+
     contractTxtOrg = open(contractPath, encoding="utf8", errors='ignore').read()
     contractTxt = contractTxtOrg
     contractVec = removeStopWords([removeStem(contractTxt)])
