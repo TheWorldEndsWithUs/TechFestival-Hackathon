@@ -5,6 +5,37 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<style>
+.alert {
+  padding: 20px;
+  background-color: #9BCE55;
+  color: white;
+}
+
+#alertBox {
+    opacity: 0;
+    font-size: 21px;
+    margin-top: 25px;
+    text-align: center;
+}
+
+.closebtn {
+  margin-left: 15px;
+  color: white;
+  font-weight: bold;
+  float: right;
+  font-size: 22px;
+  line-height: 20px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.closebtn:hover {
+  color: black;
+}
+</style>
+
 <style>
 body,h1,h2,h3,h4,h5 {font-family: "Poppins", sans-serif}
 body {font-size:16px;}
@@ -64,7 +95,6 @@ body {font-size:16px;}
     <h1 class="w3-xxxlarge w3-text-red"><b>Complain</b></h1>
     <hr style="width:50px;border:5px solid red" class="w3-round">
     <p>The complaints you feed here will help other users in the future</p>
-    <form action="/action_page.php" target="_blank">
       <div class="w3-section">
         <label>Name</label>
         <input class="w3-input w3-border" type="text" name="Name" required>
@@ -77,9 +107,14 @@ body {font-size:16px;}
         <label>Complaint</label>
         <input class="w3-input w3-border" type="text" name="Message" required>
       </div>
-      <button type="submit" class="w3-button w3-block w3-padding-large w3-red w3-margin-bottom">Send Message</button>
-    </form>  
+      <button onclick='$("#alertT").fadeIn();' class="w3-button w3-block w3-padding-large w3-red w3-margin-bottom">Send Message</button>
   </div>
+
+
+  <div class="alert" id="alertT" name="alertT" style="display:none;">
+  <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span> 
+  <strong>Success!</strong> Your complaint has been successfully submitted 
+</div>
 
 <!-- End page content -->
 </div>
