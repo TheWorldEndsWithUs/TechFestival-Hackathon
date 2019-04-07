@@ -1,3 +1,9 @@
+#!/usr/bin/env python
+# coding: utf-8
+
+# In[64]:
+
+
 import pandas as pd
 import numpy as np
 from sklearn.feature_extraction.text import CountVectorizer
@@ -7,6 +13,15 @@ from sklearn.pipeline import FeatureUnion
 from nltk.corpus import stopwords 
 import os
 import string
+
+import heapq 
+
+
+rootPath = './company0/'
+complaintSubPath = 'complaintMain/'
+
+contractPath = rootPath + '/termService/' + '0.txt'
+
 
 def removeStopWords(wordList):
     return [word for word in wordList if word not in stopwords.words('english')]
@@ -31,12 +46,7 @@ def removeStem(sentence):
     return tmpStr
 
 
-rootPath = './company0/'
-complaintSubPath = 'complaint/'
 
-contractPath = rootPath + '/termService/' + '0.txt'
-#contractPath = rootPath + '/termService/' + 'related.txt'
-#contractPath = rootPath + '/termService/' + 'unrelated.txt'
 
 contractTxt = open(contractPath, encoding="utf8", errors='ignore').read()
 contractVec = removeStopWords([removeStem(contractTxt)])
@@ -53,18 +63,23 @@ for cFilePath in os.listdir(rootPath + complaintSubPath):
     cFileTxt = open(cFilePath,'r').read()
 
     cFileTxt = removeStem(cFileTxt)
-
+    
     compList.append(cFileTxt + ' ')
+    
 
 compList = [''.join(str(v) for v in compList)]  # We are combining all complaints into one
 complantCnt = CountVectorizer()
 a = complantCnt.fit_transform(compList)
 #print(contractVec)
 
+
+# In[81]:
+
+
 resPara = []
 resScore = []
 
-splitNum = 500
+splitNum = 1000
 #for paragraph in contractTxt.split('\n'):
 for paragraph in [contractTxt[i:i+splitNum] for i in range(0, len(contractTxt), splitNum)]:
     paragraph = paragraph.translate(string.punctuation)
@@ -84,11 +99,41 @@ for paragraph in [contractTxt[i:i+splitNum] for i in range(0, len(contractTxt), 
 
     simRes = calcCosSim(complainVec,contractVec)
     #print(simRes)
+    #print('---------------------')
     resPara.append(paragraph)
     resScore.append(simRes)
 
 
 
-print(resPara[np.argmax(resScore)])
-print('')
-print(np.max(resScore))
+#print(resPara[np.argmax(resScore)])
+#print('')
+#print(np.max(resScore))
+
+
+
+rankAr = np.asarray(resPara).argsort()[::-1][:5]
+
+heapLi = []
+
+
+print('Total number of parts in contract: ', len(contractTxt.split('\n')))
+      
+print('\n\n')
+for ind in rankAr:    
+    heapq.heappush(heapLi,[-resScore[ind],ind])
+    
+while len(heapLi) > 0:
+    score,ind = heapq.heappop(heapLi)
+    score = score*-1
+    
+    print(resPara[ind])
+    print('')
+    print(score)
+    print('--------------------------\n')
+
+
+# In[ ]:
+
+
+
+
