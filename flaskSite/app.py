@@ -8,15 +8,17 @@ app = Flask(__name__)
 # use decorators to link the function to a url
 @app.route('/')
 def home():
+    return render_template('index.html')  # render a template
+
+
+@app.route('/termsService')
+def termsService():
 
     resText,resRank, mainContract = textFreqCal()
 
 
-    return render_template('index.html', **locals())
+    return render_template('termsOfService.html', **locals())
 
-@app.route('/welcome')
-def welcome():
-    return render_template('welcome.html')  # render a template
 
 # start the server with the 'run()' method
 if __name__ == '__main__':
