@@ -17,10 +17,10 @@ import string
 import heapq 
 
 
-rootPath = './company0/'
-complaintSubPath = 'complaintMain/'
+rootPath = './flaskSite/company0'
+complaintSubPath = '/complaintMain/'
 
-contractPath = rootPath + '/termService/' + 'policy.txt'
+contractPath = rootPath + '/termService/' + '0.txt'
 
 
 def removeStopWords(wordList):
